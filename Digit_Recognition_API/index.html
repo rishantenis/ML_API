@@ -1,0 +1,79 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Classifier</title>
+</head>
+<body>
+    <input type="file" id="ImageInput", accept="image/*">
+    <button onclick="uploadImage()"> Classify </button>
+    <p id="PredictionResult"></p>
+
+    <script type="text/javascript">
+        async function uploadImage() {
+            const input = document.getElementById('ImageInput');
+            if (!input.files[0]) {
+                alert('Please select a file to upload')
+                return
+            }
+            const file =input.files[0]
+            const formData = new FormData();
+            formData.append('file', file);
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict-image/',{
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json()
+                document.getElementById('PredictionResult').textContent = 'Prediction: ${result.prediction}';
+            } catch (error){
+            console.error('Error:', error);
+            alert('Failed!')
+        
+        }
+
+
+        }
+    </script>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Classifier</title>
+</head>
+<body>
+    <input type="file" id="ImageInput" accept="image/*">
+    <button onclick="uploadImage()">Classify</button>
+    <p id="PredictionResult"></p>
+
+    <script type="text/javascript">
+        async function uploadImage() {
+            const input = document.getElementById('ImageInput');
+            if (!input.files[0]) {
+                alert('Please select a file to upload');
+                return;
+            }
+            const file = input.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict-image/', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                document.getElementById('PredictionResult').textContent = `Prediction: ${result.prediction}`;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed!');
+            }
+        }
+    </script>
+</body>
+</html>
